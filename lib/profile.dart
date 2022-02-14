@@ -132,7 +132,9 @@ class _DoctorState extends State<Doctor> {
                 margin: EdgeInsets.symmetric(horizontal: 110),
                 child: ElevatedButton(
                   // style: style,
-                  onPressed: () {},
+                  onPressed: () {
+                  = add_Doctor();
+                  },
                   child: Text(
                     "Upload",
                     style: TextStyle(fontSize: 15),
@@ -156,7 +158,7 @@ class _DoctorState extends State<Doctor> {
       if (obj['result'] == "S") {
         print("Record is Saved");
       } else {
-        // ignore: avoid_print
+      
         print("Record is not  Saved");
       }
     }
