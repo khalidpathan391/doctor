@@ -10,16 +10,16 @@ class Doctor extends StatefulWidget {
   _DoctorState createState() => _DoctorState();
 }
 
-String? qualification;
-String? gender;
-String? city;
-String? edu;
-List<String> QualificationList = ["MBBS", "MCA", "BCA", "CIVIL"];
-List<String> GenderList = ["MALE", "FEMALE", "OTHERS", "INTRESTED_ANY"];
-List<String> CityList = ["LUCKNOW", "HARDOI", "DELHI", "MUMBAI"];
-TextEditingController namectrl = new TextEditingController();
-
 class _DoctorState extends State<Doctor> {
+  String? qualification;
+  String? gender;
+  String? city;
+  String? edu;
+  List<String> QualificationList = ["MBBS", "MCA", "BCA", "CIVIL"];
+  List<String> GenderList = ["MALE", "FEMALE", "OTHERS", "INTRESTED_ANY"];
+  List<String> CityList = ["LUCKNOW", "HARDOI", "DELHI", "MUMBAI"];
+  TextEditingController namectrl = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -133,7 +133,7 @@ class _DoctorState extends State<Doctor> {
                 child: ElevatedButton(
                   // style: style,
                   onPressed: () {
-                  = add_Doctor();
+                    add_Doctor();
                   },
                   child: Text(
                     "Upload",
@@ -144,23 +144,23 @@ class _DoctorState extends State<Doctor> {
             ]),
           ),
         ]));
-    Future<void> add_Doctor() async {
-      var data = {
-        "Name": namectrl.text.toString(),
-        "Qualification": edu.toString(),
-        "Gender": gender.toString(),
-        "City": city.toString(),
-      };
-      var response = await http.post(
-          Uri.parse("http://khancollege.000webhostapp.com/add/add_Doctor.php"),
-          body: json.encode(data));
-      var obj = jsonDecode(response.body);
-      if (obj['result'] == "S") {
-        print("Record is Saved");
-      } else {
-      
-        print("Record is not  Saved");
-      }
+  }
+
+  Future<void> add_Doctor() async {
+    var data = {
+      "Name": namectrl.text.toString(),
+      "Qualification": edu.toString(),
+      "Gender": gender.toString(),
+      "City": city.toString(),
+    };
+    var response = await http.post(
+        Uri.parse("https://khancollege.000webhostapp.com/add/add_Doctor.php"),
+        body: json.encode(data));
+    var obj = jsonDecode(response.body);
+    if (obj['result'] == "S") {
+      print("Record is Saved");
+    } else {
+      print("Record is not  Saved");
     }
   }
 }
